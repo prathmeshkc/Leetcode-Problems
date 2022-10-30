@@ -7,8 +7,7 @@ class Solution {
         
         for(int i=0; i<n;i++){
             
-            sum += nums[i];
-            ans[i] = sum;            
+            ans[i] = sum = sum+nums[i];          
         }
         
         return ans;
