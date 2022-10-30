@@ -6,8 +6,7 @@ class Solution {
         int ans[] = new int[ansSize];
         
         for(int i=0; i<n;i++){
-            ans[i] = nums[i];
-            ans[n+i] = nums[i];
+            ans[i] = ans[n+i] = nums[i];
         }
         
         return ans;
