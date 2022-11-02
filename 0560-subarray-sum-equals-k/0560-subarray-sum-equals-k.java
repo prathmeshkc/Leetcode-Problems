@@ -8,7 +8,6 @@ class Solution {
         
         for(int i=0; i<nums.length; i++){
             currSum += nums[i];
-            
             if(map.containsKey(currSum-k)){
                 ans += map.get(currSum-k);
             }
