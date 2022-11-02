@@ -1,15 +1,15 @@
 class Solution {
     public int longestConsecutive(int[] nums) {
          
-        ArrayList<Integer> list = new ArrayList<>(); 
-        for(int val: nums){
-            list.add(val);
-        }
         
         //NeetCode approach
         
-        HashSet<Integer> set = new HashSet<Integer>(list);
-       
+        HashSet<Integer> set = new HashSet<Integer>();
+        for(int val: nums){
+            set.add(val);
+        }
+        
+        
         int maxLength = 0;
         
         
