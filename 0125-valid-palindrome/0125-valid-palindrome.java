@@ -6,7 +6,7 @@ class Solution {
             return true;
         }
         
-        
+      
         String plainText = "";
         
         for(char c: s.toCharArray()){
