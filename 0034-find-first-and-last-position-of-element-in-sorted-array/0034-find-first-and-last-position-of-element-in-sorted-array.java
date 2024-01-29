@@ -19,19 +19,15 @@ class Solution {
                 low = mid + 1;
             } else {
                 if(isLeftSearch) {
-                    if(mid == 0) return mid;
+                    if(mid == 0 || nums[mid-1] != target) return mid;
                     else if(nums[mid-1] == target) {
                         high = mid - 1;
-                    } else {
-                        return mid;
                     }
                     
                 } else {
-                    if(mid == nums.length-1) return mid;
+                    if(mid == nums.length-1 || nums[mid+1] != target) return mid;
                     else if(nums[mid+1] == target) {
                         low = mid + 1;
-                    } else {
-                        return mid;
                     }
                 }
             }
