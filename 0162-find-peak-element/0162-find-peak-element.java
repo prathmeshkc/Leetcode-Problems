@@ -15,7 +15,8 @@ class Solution {
             } else if((mid == 0 || nums[mid-1] > nums[mid]) && (mid == n || nums[mid+1] < nums[mid])) {
                 high = mid - 1;
             } else if((mid == 0 || nums[mid-1] > nums[mid]) && (mid == n || nums[mid+1] > nums[mid])) {
-                high = mid - 1;
+                // high = mid - 1;
+                low = mid + 1;
             } 
         }
         
