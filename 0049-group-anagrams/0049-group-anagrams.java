@@ -5,17 +5,10 @@ class Solution {
         
         for(String s: strs) {
             double product = findProduct(s);
-            // if(!map.containsKey(product)) {
-            //     map.put(product, new ArrayList<>());
-            // }
-            // map.get(product).add(s);
-            
-            if(map.containsKey(product)) {
-                map.get(product).add(s);
-            } else {
+            if(!map.containsKey(product)) {
                 map.put(product, new ArrayList<>());
-                map.get(product).add(s);
             }
+            map.get(product).add(s);
         }
         
         return new ArrayList<>(map.values());
