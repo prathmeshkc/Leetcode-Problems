@@ -1,40 +1,26 @@
 class Solution {
+    
     public List<List<String>> groupAnagrams(String[] strs) {
+        Map<Double, List<String>> map = new HashMap<>();
         
-        List<List<String>> res = new ArrayList<>();
-        
-        
-        
-        if(strs.length == 1 && strs[0] == "") {
-            return new ArrayList<List<String>>() {{
-                add(Arrays.asList(""));
-            }};
-        }
-        
-        Map<String, List<String>> map = new HashMap<>();
-        
-        for(String str: strs) {
-            char[] charArr = str.toCharArray();
-            Arrays.sort(charArr);
-            String newStr = String.valueOf(charArr);
-            
-            if(map.containsKey(newStr)) {
-                List<String> value = map.get(newStr);
-                value.add(str);
-                map.put(newStr, value);
-            }else{
-                List<String> value = new ArrayList<>();
-                value.add(str);
-                map.put(newStr, value);
+        for(String s: strs) {
+            double product = findProduct(s);
+            if(!map.containsKey(product)) {
+                map.put(product, new ArrayList<>());
             }
+            map.get(product).add(s);
         }
         
-        for(String key: map.keySet()) {
-            res.add(map.get(key));
+        return new ArrayList<>(map.values());
+    }
+    
+    private static double findProduct(String s) {
+        int[] primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101};
+        double result = 1;
+        for(int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            result = result * primes[c-'a'];
         }
-        
-        return res;
-        
-        
+        return result;
     }
 }
