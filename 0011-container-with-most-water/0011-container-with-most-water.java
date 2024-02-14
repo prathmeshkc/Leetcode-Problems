@@ -14,6 +14,7 @@ class Solution {
                 high--;
             } else {
                 low++;
+                high--;
             }
         }
         return max;
