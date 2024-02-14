@@ -1,31 +1,21 @@
 class Solution {
     public int maxArea(int[] height) {
-        //two pointer
-        //if slant, consider the smaller one. so the height will be smaller bar's height
-        //width is the diff bet the indices
-        //area = width x height
-        //keep track of result = max(area, current area)
+        int low = 0;
+        int high = height.length-1;
+        int max = 0;
         
-        int res = 0;
-        
-        int start = 0;
-        int end = height.length - 1;
-        
-        while(start < end) {
-            int ht = Math.min(height[start], height[end]);
-            int width = end - start;
+        while(low<high) {
+            int area = (high-low)*Math.min(height[low], height[high]);
+            max = Math.max(max, area);
             
-            int area = width * ht;
-            res = Math.max(res, area);
-            if(height[start] > height[end]) {
-                end--;
-            }else {
-                start++;
+            if(height[low] < height[high]) {
+                low++;
+            } else if(height[low] > height[high]) {
+                high--;
+            } else {
+                low++;
             }
         }
-        
-        return res;
-        
-        
+        return max;
     }
 }
