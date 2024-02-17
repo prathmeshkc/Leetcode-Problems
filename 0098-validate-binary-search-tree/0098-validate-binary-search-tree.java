@@ -14,9 +14,11 @@
  * }
  */
 class Solution {
-    List<Integer> list = new ArrayList<>();
+    
+    private List<Integer> list;
     
     public boolean isValidBST(TreeNode root) {
+        list = new ArrayList<>();
         helper(root);
         for(int i=1; i<list.size(); i++) {
             if(list.get(i) <= list.get(i-1)) return false;
