@@ -35,6 +35,7 @@ class Solution {
             flag = false;
         }
         prev = root;
-        inorder(root.right);
+        
+        if(flag) inorder(root.right);
     }
 }
