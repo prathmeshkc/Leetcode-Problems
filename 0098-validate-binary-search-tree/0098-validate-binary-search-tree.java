@@ -29,13 +29,15 @@ class Solution {
         if(root == null) return;
         
         //logic
-        inorder(root.left);
+        if(flag) {
+            inorder(root.left);
         
         if(prev != null && prev.val >= root.val) {
             flag = false;
         }
         prev = root;
+        inorder(root.right);
+        }
         
-        if(flag) inorder(root.right);
     }
 }
