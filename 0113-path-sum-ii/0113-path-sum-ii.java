@@ -28,8 +28,11 @@ class Solution {
         if(root == null) return;
         
         //logic
+        
         curSum += root.val;
+        //action
         path.add(root.val);
+        
         if(root.left == null && root.right == null) {
             if(curSum == targetSum) {
                 res.add(new ArrayList<>(path));
@@ -38,7 +41,7 @@ class Solution {
         
         helper(root.left, targetSum, curSum, path);
         helper(root.right, targetSum, curSum, path);
-        
+        //undo the action (backtrack)
         path.remove(path.size() - 1);
     }
 }
