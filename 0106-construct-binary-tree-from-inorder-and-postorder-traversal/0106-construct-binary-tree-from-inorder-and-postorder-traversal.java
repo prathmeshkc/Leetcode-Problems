@@ -14,38 +14,37 @@
  * }
  */
 class Solution {
-    // private Map<Integer, Integer> inMap;
-    
+    private Map<Integer, Integer> map;
+    private int idx;
     public TreeNode buildTree(int[] inorder, int[] postorder) {
+        this.map = new HashMap<>();
+        idx = postorder.length - 1;
         
-        if(postorder == null || inorder == null || postorder.length == 0 || inorder.length == 0) return null;
-        
-        int rootIdx = postorder.length-1;
-        int rootVal = postorder[rootIdx];
-        TreeNode root = new TreeNode(rootVal);
-        
-        if (postorder.length == 1) {
-            return root;
-        }
-        
-        int inRootIdx = -1;
         for(int i=0; i<inorder.length; i++) {
-            if(inorder[i] == rootVal) {
-                inRootIdx = i;
-                break;
-            }
+            map.put(inorder[i], i);
         }
-        if(inRootIdx == -1) return null;
         
-        int[] inLeft = Arrays.copyOfRange(inorder, 0, inRootIdx);
-        int[] inRight = Arrays.copyOfRange(inorder, 1 + inRootIdx, inorder.length);
-        int[] postLeft = Arrays.copyOfRange(postorder, 0, inLeft.length);
-        int[] postRight = Arrays.copyOfRange(postorder, postLeft.length, rootIdx);
-        
-        root.left = buildTree(inLeft, postLeft);
-        root.right = buildTree(inRight, postRight);
-        
-        return root;
+        return helper(0, inorder.length - 1, postorder);
     }
     
+    private TreeNode helper(int start, int end, int[] postorder) {
+        //base
+        if(start > end) return null;
+        if(idx < 0) return null;
+        
+        //logic
+        int rootVal = postorder[idx];
+        int rootIdx = map.get(rootVal);
+        idx--;
+        
+        TreeNode root = new TreeNode(rootVal);
+        
+        
+        root.right = helper(rootIdx+1, end, postorder);
+        root.left = helper(start, rootIdx-1, postorder);
+        
+        
+        return root;
+        
+    }
 }
