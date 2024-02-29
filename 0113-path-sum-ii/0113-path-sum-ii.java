@@ -14,11 +14,9 @@
  * }
  */
 class Solution {
-    
-    private List<List<Integer>> res;
-    
+    List<List<Integer>> res;
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        res = new ArrayList<>();
+        this.res = new ArrayList<>();
         helper(root, targetSum, 0, new ArrayList<>());
         return res;
     }
@@ -28,20 +26,16 @@ class Solution {
         if(root == null) return;
         
         //logic
-        
         curSum += root.val;
-        //action
         path.add(root.val);
-        
         if(root.left == null && root.right == null) {
-            if(curSum == targetSum) {
-                res.add(new ArrayList<>(path));
-            }
+            if(curSum == targetSum) res.add(new ArrayList<>(path));
         }
         
         helper(root.left, targetSum, curSum, path);
         helper(root.right, targetSum, curSum, path);
-        //undo the action (backtrack)
+        
+        //backtrack
         path.remove(path.size() - 1);
     }
 }
