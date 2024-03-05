@@ -6,7 +6,7 @@ class Solution {
         for(int i=0; i<nums.length; i++) {
             pq.add(nums[i]);
             if(pq.size() > (nums.length-k)) {
-                result = Math.min(pq.poll(), result);
+                result = Math.min(pq.poll(), result); //log(n-k)
             }
         }
         
