@@ -18,7 +18,7 @@ class Solution {
                 set.add(c);
             }
             
-            max = Math.max(max, i - start + 1);
+            max = Math.max(max, set.size());
         }
         
         return max;
