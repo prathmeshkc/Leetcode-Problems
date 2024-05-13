@@ -1,35 +1,34 @@
 class Solution {
+    
     int[][] dirs;
+    int originalColor;
+    int m;
+    int n;
+    
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
-        int m = image.length;
-        int n = image[0].length;
+        m = image.length;
+        n = image[0].length;
         this.dirs = new int[][]{
-            {-1, 0},
-            {1, 0},
-            {0, -1},
-            {0, 1},
+                {-1, 0},
+                {1, 0},
+                {0, -1},
+                {0, 1},
         };
-        
-        if(image[sr][sc] == color) return image;
-        int originalColor = image[sr][sc];
-        
-        Queue<int[]> q = new LinkedList<>();
-        q.add(new int[]{sr,sc});
-        image[sr][sc] = color;
-        while(!q.isEmpty()) {
-            int[] pos = q.poll();
-            int row = pos[0];
-            int col = pos[1];
-            for(int[] dir: this.dirs) {
-                int nr = dir[0] + row;
-                int nc = dir[1] + col;
-                if(nr >= 0 && nr < m && nc >=0 && nc < n && image[nr][nc] == originalColor) {
-                    q.add(new int[]{nr, nc});
-                    image[nr][nc] = color;
-                }
-            }
-        }
-        
+        if (image[sr][sc] == color) return image;
+        this.originalColor = image[sr][sc];
+        dfs(image, sr, sc, color, m, n);
         return image;
+    }
+    
+    private void dfs(int[][] image, int sr, int sc, int color, int m, int n) {
+        //base
+        if(sr < 0 || sc < 0 || sr == m || sc == n || image[sr][sc] != this.originalColor) return;
+        //logic
+        image[sr][sc] = color;
+        for(int[] dir: dirs) {
+            int nr = dir[0] + sr;
+            int nc = dir[1] + sc;
+            dfs(image, nr, nc, color, m, n);
+        }
     }
 }
