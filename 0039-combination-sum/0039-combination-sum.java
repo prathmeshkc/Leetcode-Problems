@@ -18,11 +18,13 @@ class Solution {
         
         ///logic
         
-        //don't choose
-        helper(candidates, idx+1, new ArrayList<>(path), target);
         
         //choose
         path.add(candidates[idx]);
         helper(candidates, idx, new ArrayList<>(path), target - candidates[idx]);
+        path.remove(path.size()-1);
+        
+        //don't choose
+        helper(candidates, idx+1, new ArrayList<>(path), target);
     }
 }
