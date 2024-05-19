@@ -11,20 +11,20 @@ class Solution {
         if(idx == candidates.length || target < 0) return;
         
         if(target == 0) {
-            res.add(path);
+            res.add(new ArrayList<>(path));
             return;
         }
         
         
         ///logic
-        
-        
+                
         //choose
         path.add(candidates[idx]);
-        helper(candidates, idx, new ArrayList<>(path), target - candidates[idx]);
+        helper(candidates, idx, path, target - candidates[idx]);
+        //backtrack
         path.remove(path.size()-1);
         
         //don't choose
-        helper(candidates, idx+1, new ArrayList<>(path), target);
+        helper(candidates, idx+1, path, target);
     }
 }
