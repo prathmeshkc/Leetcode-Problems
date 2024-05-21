@@ -7,10 +7,13 @@ class Solution {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
         
-        Queue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((a,b) -> b.getValue().compareTo(a.getValue()));
+        Queue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((a,b) -> a.getValue().compareTo(b.getValue()));
         
         for(Map.Entry<Integer, Integer> entry: map.entrySet()) {
             pq.add(entry);
+            if(pq.size() > k) {
+                pq.poll();
+            }
         }
         
         for(int i = 0; i<k; i++) {
