@@ -7,6 +7,8 @@ class Solution {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
         
+        
+        //Using Min Heap
         Queue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((a,b) -> a.getValue().compareTo(b.getValue()));
         
         for(Map.Entry<Integer, Integer> entry: map.entrySet()) {
