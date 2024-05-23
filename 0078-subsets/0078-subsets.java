@@ -1,25 +1,18 @@
 class Solution {
-    List<List<Integer>> res;
+    //Without Recursion
     public List<List<Integer>> subsets(int[] nums) {
-        this.res = new ArrayList<>();
-        helper(nums, 0, new ArrayList<>());
-        return res;
-    }
-    
-    private void helper(int[] nums, int pivot, List<Integer> path) {
-        //no base as recursion will stop at last index. For loop will take care of it.
+        List<List<Integer>> res = new ArrayList<>();
         
-        
-        //logic
-        res.add(new ArrayList<>(path)); //add at every node. Not just at the leaf
-        for(int i = pivot; i < nums.length; i++) {
-            //action
-            path.add(nums[i]);
-            //recurse
-            helper(nums, i+1, path);
-            //backtrack
-            path.removeLast();
+        res.add(new ArrayList<>());
+        for(int i = 0; i < nums.length; i++) {
+            int size = res.size();
+            for(int j = 0; j < size; j++) {
+                List<Integer> list = new ArrayList<>(res.get(j)); //create a deep copy
+                list.add(nums[i]);
+                res.add(list);
+            }
         }
         
+        return res;
     }
 }
