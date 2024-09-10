@@ -3,39 +3,43 @@ class Solution {
         int m = matrix.length;
         int n = matrix[0].length;
         
-        int left = 0; int right = n-1;
-        int top = 0; int bottom = m-1;
         List<Integer> res = new ArrayList<>();
         
-        while(left <= right && top <= bottom) {
-            //top row
-            for(int j = left; j <= right; j++) {
-                res.add(matrix[top][j]);
+        int top = 0;
+        int bottom = m - 1;
+        
+        int left = 0;
+        int right = n - 1;
+        
+        while(top <= bottom && left <= right) {
+            //top row L -> R
+            for(int i = left; i <= right; i++) {
+                res.add(matrix[top][i]);
             }
             top++;
             
-            //right col
+            
+            //right column U -> D
             for(int i = top; i <= bottom; i++) {
                 res.add(matrix[i][right]);
             }
             right--;
             
-            //bottom row
+            //bottom row R -> L
             if(top <= bottom) {
-                for(int j = right; j >= left; j--) {
-                    res.add(matrix[bottom][j]);
+                for(int i = right; i >= left; i--) {
+                    res.add(matrix[bottom][i]);
                 }
                 bottom--;
             }
             
-            //left col
+            //left column D -> U
             if(left <= right) {
                 for(int i = bottom; i >= top; i--) {
                     res.add(matrix[i][left]);
                 }
                 left++;
             }
-            
         }
         
         return res;
