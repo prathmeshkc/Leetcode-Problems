@@ -3,23 +3,23 @@ class Solution {
         int m = matrix.length;
         int n = matrix[0].length;
         
-        List<Integer> res = new ArrayList<>();
-        
         int top = 0;
         int bottom = m - 1;
         
         int left = 0;
         int right = n - 1;
         
+        List<Integer> res = new ArrayList<>();
+        
         while(top <= bottom && left <= right) {
+            
             //top row L -> R
             for(int i = left; i <= right; i++) {
                 res.add(matrix[top][i]);
             }
             top++;
             
-            
-            //right column U -> D
+            //right col U -> D
             for(int i = top; i <= bottom; i++) {
                 res.add(matrix[i][right]);
             }
@@ -33,7 +33,7 @@ class Solution {
                 bottom--;
             }
             
-            //left column D -> U
+            //left col D -> U
             if(left <= right) {
                 for(int i = bottom; i >= top; i--) {
                     res.add(matrix[i][left]);
