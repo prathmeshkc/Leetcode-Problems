@@ -31,26 +31,16 @@ class Solution {
         return res;
     }
     
-    private void solve(TreeNode root) {
-        if(root == null) return;
-        Pair pair = findSum(root);
-        if(root.val == pair.sum / pair.count) res++;
-        
-        solve(root.left);
-        solve(root.right);
-    }
-    
-    private Pair findSum(TreeNode root) {
+    private Pair solve(TreeNode root) {
         if(root == null) return new Pair(0, 0);
-        
-        Pair left = findSum(root.left);
-        Pair right = findSum(root.right);
+        Pair left = solve(root.left);
+        Pair right = solve(root.right);
         
         int totalSum = left.sum + right.sum + root.val;
         int totalCount = left.count + right.count + 1;
         
+        if(root.val == totalSum/totalCount) res++;
+        
         return new Pair(totalSum, totalCount);
     }
-    
-    
 }
