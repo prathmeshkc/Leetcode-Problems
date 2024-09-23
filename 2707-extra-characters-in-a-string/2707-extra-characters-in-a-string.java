@@ -3,7 +3,7 @@ class Solution {
     private int[] mem;
     public int minExtraChar(String s, String[] dictionary) {
         this.set = new HashSet<>();
-        this.mem = new int[51];
+        this.mem = new int[s.length()];
         Arrays.fill(mem, -1);
         
         for(String str: dictionary) {
