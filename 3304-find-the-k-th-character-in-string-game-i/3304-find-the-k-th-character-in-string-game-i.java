@@ -5,15 +5,15 @@ class Solution {
         sb.append("a");
         
         while(sb.length() < k) {
-            String generated = "";
+            StringBuilder generated = new StringBuilder();
             for(int i = 0; i < sb.length(); i++) {
                 char c = sb.charAt(i);
                 int idx = (int) c + 1;
                 if(c == 'z') idx = 97;
                 
-                generated += Character.toString((int) idx);
+                generated.append(Character.toString((int) idx));
             }
-            sb.append(generated);
+            sb.append(generated.toString());
         }
         
         return sb.charAt(k-1);
